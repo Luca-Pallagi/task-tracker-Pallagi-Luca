@@ -8,7 +8,7 @@
 
 | #   | Symptom                                    | Ursache | Fix (Dateien / was geändert) |
 | --- | ------------------------------------------ | ------- | ---------------------------- |
-| 1   |                                            |         |                              |
+| 1   | Die Tasklist ist leehr, obwohl die Datenbank Tasks enthält                                           |  Fehlendes Await beim Asynchronen Aufruf       |   tasks.js / await beim Aufruf von taskService hinzugefügt                |
 | 2   |                                            |         |                              |
 | 3   |                                            |         |                              |
 | 4   |                                            |         |                              |
@@ -34,7 +34,7 @@ _Welche Tests hast du geschrieben, und was decken sie ab?_
 
 | Aufgabe   | Zeit |
 | --------- | ---- |
-| Setup     |      |
+| Setup     | 10min|
 | Bugs      |      |
 | Feature   |      |
 | Tests     |      |
