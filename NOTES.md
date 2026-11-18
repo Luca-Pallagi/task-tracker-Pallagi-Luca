@@ -9,7 +9,7 @@
 | #   | Symptom                                    | Ursache | Fix (Dateien / was geändert) |
 | --- | ------------------------------------------ | ------- | ---------------------------- |
 | 1   | Die Tasklist ist leehr, obwohl die Datenbank Tasks enthält                                           |  Fehlendes Await beim Asynchronen Aufruf       |   tasks.js / await beim Aufruf von taskService hinzugefügt                |
-| 2   |                                            |         |                              |
+| 2   |Die Tasks in der Taskliste wurden nicht nach der Priorität sortiert                                            |Priorität war String anstatt Number         |models/task.js / String zu Number abgeändert                              |
 | 3   |                                            |         |                              |
 | 4   |                                            |         |                              |
 | 5   |                                            |         |                              |
