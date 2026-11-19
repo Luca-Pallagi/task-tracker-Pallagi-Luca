@@ -40,6 +40,7 @@ export default function App() {
         status: task.status === 'done' ? 'open' : 'done',
       });
       setTasks((current) => current.map((t) => (t.id === updated.id ? updated : t)));
+      loadTasks();
     } catch (err) {
       setError(err.message);
     }
