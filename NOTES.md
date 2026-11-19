@@ -13,7 +13,7 @@
 | 3   | Beim erstellen eines Tasks wurde der Tag war Datum einen Tag vor dem angegebenen Datum                                           |kombination von setDate() und toISOString         | TaskForm.jsx / dueDate im Frontend als String gespeichert                             |
 | 4   | Beim abhacken einer Task, ist er erst beim Neuladen der Seite abgehackt.                                           |Tasklist wurde nicht aktualisiert          | App.jsx / loadTask bei HandleToggle eingefügt.                             |
 | 5   |                                            |         |                              |
-| 6   |                                            |         |                              |
+| 6   | Beim ändern eines Tasks über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           |fehlende überprüfung ob dueDate verändert werden soll         |                              |taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.
 | …   | _(alles, was du sonst noch gefunden hast)_ |         |                              |
 
 ## Feature: Filtern und Sortieren

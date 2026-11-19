@@ -52,11 +52,13 @@ function validateTaskInput(body, { partial }) {
   }
 
   // dueDate is optional - normalise "no due date" to null
-  const dueDate = body.dueDate ? new Date(body.dueDate) : null;
-  if (dueDate && Number.isNaN(dueDate.getTime())) {
-    throw new HttpError(400, 'dueDate is not a valid date');
+  if(body.dueDate !== undefined){
+    const dueDate = body.dueDate ? new Date(body.dueDate) : null;
+    if (dueDate && Number.isNaN(dueDate.getTime())) {
+      throw new HttpError(400, 'dueDate is not a valid date');
+    }
+    data.dueDate = dueDate;
   }
-  data.dueDate = dueDate;
 
   if (body.status !== undefined) {
     if (!STATUSES.includes(body.status)) {
