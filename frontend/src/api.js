@@ -13,8 +13,8 @@ async function request(path, options = {}) {
   return data;
 }
 
-export function listTasks() {
-  return request('/tasks/');
+export function listTasks(sort, order) {
+  return request(`/tasks?sort=${sort}&order=${order}`);
 }
 
 export function createTask(task) {

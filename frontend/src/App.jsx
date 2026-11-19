@@ -8,10 +8,13 @@ export default function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [sort, setSort] = useState("priority");
+  const [order, setOrder] = useState("desc");
+
   const loadTasks = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await api.listTasks();
+      const data = await api.listTasks(sort, order);
       setTasks(Array.isArray(data) ? data : []);
       setError(null);
     } catch (err) {
@@ -19,7 +22,7 @@ export default function App() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [sort, order]);
 
   useEffect(() => {
     loadTasks();
@@ -59,7 +62,17 @@ export default function App() {
     <main className="container">
       <h1>Task Tracker</h1>
       <TaskForm onCreate={handleCreate} />
-      {/* TODO: filter and sort controls */}
+
+      <select value={sort} onChange={(e) => setSort(e.target.value)}>
+        <option value="priority">Priority</option>
+        <option value="dueDate">Due date</option>
+        <option value="createdAt">Created</option>
+      </select>
+      <select value={order} onChange={(e) => setOrder(e.target.value)}>
+        <option value="desc">Desc</option>
+        <option value="asc">Asc</option>
+      </select>
+
       {error && <p className="error">⚠ {error}</p>}
       {loading ? <p>Loading…</p> : <TaskList tasks={tasks} onToggle={handleToggle} onDelete={handleDelete} />}
     </main>
