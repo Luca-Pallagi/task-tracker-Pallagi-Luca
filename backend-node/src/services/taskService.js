@@ -72,9 +72,16 @@ function validateTaskInput(body, { partial }) {
 
 // ---------- service functions ----------
 
-async function listTasks() {
+async function listTasks({sort = "priority", order = "desc" } = {}) {
+  if(!["priority", "dueDate", "createdAt"].includes(sort)){
+    throw new HttpError(400, "sort muss priority, dueDate oder createdAt sein");
+  }
+  if(!["asc", "desc"].includes(order)){
+    throw new HttpError(400, "order muss entweder asc oder desc sein");
+  }
   // most important tasks first
-  const docs = await Task.find().sort({ priority: -1, _id: -1 }).lean();
+  const direction = order === "asc" ? 1 : -1
+  const docs = await Task.find().sort({ [sort]: direction, _id: direction }).lean();
   return docs.map(toDto);
 }
 

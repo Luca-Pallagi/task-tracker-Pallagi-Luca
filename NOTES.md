@@ -37,8 +37,8 @@ Beim Suchen und erklären des 3. Bugs.
 
 | Aufgabe   | Zeit |
 | --------- | ---- |
-| Setup     | 10min|
-| Bugs      |      |
+| Setup     | 15min|
+| Bugs      | 3h   |
 | Feature   |      |
 | Tests     |      |
 | NOTES.md  |      |

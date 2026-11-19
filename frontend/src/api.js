@@ -14,7 +14,7 @@ async function request(path, options = {}) {
 }
 
 export function listTasks() {
-  return request('/tasks');
+  return request('/tasks/');
 }
 
 export function createTask(task) {
