@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { startOfDay } from '../date';
 
-const EMPTY = { title: '', description: '', priority: '5', dueDate: '' };
+const EMPTY = { title: '', description: '', priority: 5, dueDate: '' };
 
 export default function TaskForm({ onCreate }) {
   const [form, setForm] = useState(EMPTY);
@@ -16,7 +16,7 @@ export default function TaskForm({ onCreate }) {
       title: form.title.trim(),
       description: form.description,
       priority: form.priority,
-      dueDate: form.dueDate ? startOfDay(form.dueDate).toISOString() : null,
+      dueDate: form.dueDate || null,
     });
     setForm(EMPTY);
   }

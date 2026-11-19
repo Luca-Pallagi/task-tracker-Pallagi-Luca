@@ -10,7 +10,7 @@
 | --- | ------------------------------------------ | ------- | ---------------------------- |
 | 1   | Die Tasklist ist leehr, obwohl die Datenbank Tasks enthält                                           |  Fehlendes Await beim Asynchronen Aufruf       |   tasks.js / await beim Aufruf von taskService hinzugefügt                |
 | 2   |Die Tasks in der Taskliste wurden nicht nach der Priorität sortiert                                            |Priorität war String anstatt Number         |models/task.js / String zu Number abgeändert                              |
-| 3   |                                            |         |                              |
+| 3   | Beim erstellen eines Tasks wurde der Tag war Datum einen Tag vor dem angegebenen Datum                                           |kombination von setDate() und toISOString         | TaskForm.jsx / dueDate im Frontend als String gespeichert                             |
 | 4   |                                            |         |                              |
 | 5   |                                            |         |                              |
 | 6   |                                            |         |                              |
@@ -26,8 +26,11 @@ _Welche Tests hast du geschrieben, und was decken sie ab?_
 
 ## KI-Nutzung
 
-- **Verwendete Tools:**
-- **Wofür ich sie verwendet habe:**
+- **Verwendete Tools:** Claude und ChatGPT
+- **Wofür ich sie verwendet habe:** 
+Beim Erklären einiger Zeilen im Code.
+
+Beim Suchen und erklären des 3. Bugs.
 - **Wo die KI falsch lag oder nicht geholfen hat, und wie ich es gemerkt habe:**
 
 ## Zeitaufwand
