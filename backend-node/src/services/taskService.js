@@ -3,6 +3,8 @@ const { HttpError } = require('../errors');
 
 const STATUSES = ['open', 'done'];
 
+const mongoose = require('mongoose');
+
 // ---------- mapping ----------
 
 function toDto(doc) {
@@ -86,6 +88,9 @@ async function listTasks({sort = "priority", order = "desc" } = {}) {
 }
 
 async function getTask(id) {
+  if (!mongoose.isValidObjectId(id)) {
+    throw new HttpError(400, 'Invalid task ID');
+  }
   const doc = await Task.findById(id).lean();
   if (!doc) throw new HttpError(404, 'Task not found');
   return toDto(doc);

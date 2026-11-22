@@ -12,7 +12,7 @@
 | 2   |Die Tasks in der Taskliste wurden nicht nach der Priorität sortiert                                            |Priorität war String anstatt Number         |models/task.js / String zu Number abgeändert                              |
 | 3   | Beim erstellen eines Tasks wurde der Tag war Datum einen Tag vor dem angegebenen Datum                                           |kombination von setDate() und toISOString         | TaskForm.jsx / dueDate im Frontend als String gespeichert                             |
 | 4   | Beim abhacken einer Task, ist er erst beim Neuladen der Seite abgehackt.                                           |Tasklist wurde nicht aktualisiert          | App.jsx / loadTask bei HandleToggle eingefügt.                             |
-| 5   |                                            |         |                              |
+| 5   | Beim Aufruf von `GET /api/tasks/123` wird der HTTP-500 Fehler angezeigt anstatt den 400 Fehler                                           | Die Id ist keine Mongoose Id        |                              | taskService / ein if eingefügt das überprüft ob es eine mongoose Id ist.
 | 6   | Beim ändern eines Tasks über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           | fehlende überprüfung ob dueDate verändert werden soll         |  taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.                             | 
 | …   | _(alles, was du sonst noch gefunden hast)_ |         |                              |
 
@@ -33,6 +33,8 @@ _Welche Tests hast du geschrieben, und was decken sie ab?_
 Beim Erklären einiger Zeilen im Code.
 
 Beim Suchen und erklären des 3. Bugs.
+
+Beim Bug 5 vom finden der moongose Bibliothek und `.isValidObjectId()` funktion.
 
 Für das .include für den HttpError von sort und order.
 - **Wo die KI falsch lag oder nicht geholfen hat, und wie ich es gemerkt habe:**
