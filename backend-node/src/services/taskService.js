@@ -74,7 +74,28 @@ function validateTaskInput(body, { partial }) {
 
 // ---------- service functions ----------
 
-async function listTasks({sort = "priority", order = "desc" } = {}) {
+async function listTasks({sort = "priority", order = "desc", status, minPriority } = {}) {
+
+  if (status !== undefined && !["open", "done"].includes(status)) {
+    throw new HttpError(400, "Invalid status");
+  }
+
+  if (minPriority !== undefined) {
+    if (Number(minPriority) < 1 || Number(minPriority) > 10) {
+     throw new HttpError(400, "minPriority must be an integer between 1 and 10");
+    }
+  }
+
+  const filter = {};
+
+  if (status !== undefined) {
+    filter.status = status;
+  }
+
+   if (minPriority !== undefined) {
+    filter.priority = { $gte: Number(minPriority) };
+  }
+
   if(!["priority", "dueDate", "createdAt"].includes(sort)){
     throw new HttpError(400, "sort muss priority, dueDate oder createdAt sein");
   }
@@ -83,7 +104,7 @@ async function listTasks({sort = "priority", order = "desc" } = {}) {
   }
   // most important tasks first
   const direction = order === "asc" ? 1 : -1
-  const docs = await Task.find().sort({ [sort]: direction, _id: direction }).lean();
+   const docs = await Task.find(filter).sort({ [sort]: direction, _id: direction }).lean();
   return docs.map(toDto);
 }
 

@@ -20,7 +20,13 @@
 
 _Wie hast du es umgesetzt? Welche Entscheidungen hast du getroffen, und warum?_
 
-Zuerst habe ich im Backend das sort und order eingefügt. Danach in App.jsx die Dropdowns hinzugeügt und in api.js sort und order als request query erstellt. Am Ende gab sortierte die Liste nicht und ich musste die KI fragen was nicht stimmt, im route/tasks fiehl noch die req.query.
+Zuerst habe ich im Backend das sort und order eingefügt. Danach in App.jsx die Dropdowns hinzugeügt, damit keine falsche Werte eingegeben werden können, und in api.js sort und order als request query erstellt. Am Ende sortierte die Liste nicht und ich fragte die KI, weil ich der Fehler lange nicht fand, was nicht stimmt, im route/tasks fiehl noch die req.query.
+
+Für den Status und die minPriority habe ich zuerst, im taskService zwei If Statements erstellt die Testen, ob Status ud minPriority die korrekten Werte haben. Anbei habe ich im taskService zuerst einen leeren filtern erstellt, der den Status und die Priorität speichert. Somit musste ich am schluss nur noch die Task.find()  zu Task.find(filter) abändern.
+
+In der api.js erstellte ich eine Variabel für die url. Damit ich, falls es status oder minPriority hat, diese einfach zur URL hinzufügen kann.
+
+Im Frontend erstellte ich zwei neue UseStates für minPriority und status. Am Schluss erstellte ich nochmals zwei neue Dropdowns, welche die minPriority und status anzeigen. Die minPriority erstellte ich mit map, damit ich nicht jede einzelne option schreiben muss.
 
 ## Tests
 
@@ -37,6 +43,9 @@ Beim Suchen und erklären des 3. Bugs.
 Beim Bug 5 vom finden der moongose Bibliothek und `.isValidObjectId()` funktion.
 
 Für das .include für den HttpError von sort und order.
+
+Bei Task.find(filter).sort ...  hat es mir gezeigt wie es mit filter einfach funktioniert.
+
 - **Wo die KI falsch lag oder nicht geholfen hat, und wie ich es gemerkt habe:**
 
 ## Zeitaufwand
@@ -45,7 +54,7 @@ Für das .include für den HttpError von sort und order.
 | --------- | ---- |
 | Setup     | 15min|
 | Bugs      | 3h   |
-| Feature   |      |
+| Feature   | 2h   |
 | Tests     |      |
 | NOTES.md  |      |
 | **Total** |      |

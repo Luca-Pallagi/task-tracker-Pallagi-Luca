@@ -13,8 +13,18 @@ async function request(path, options = {}) {
   return data;
 }
 
-export function listTasks(sort, order) {
-  return request(`/tasks?sort=${sort}&order=${order}`);
+export function listTasks(sort, order, status, minPriority) {
+  let url = `/tasks?sort=${sort}&order=${order}`;
+
+  if (status) {
+    url += `&status=${status}`;
+  }
+
+  if (minPriority) {
+    url += `&minPriority=${minPriority}`;
+  }
+
+  return request(url);
 }
 
 export function createTask(task) {
