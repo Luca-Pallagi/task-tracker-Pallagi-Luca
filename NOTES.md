@@ -13,12 +13,14 @@
 | 3   | Beim erstellen eines Tasks wurde der Tag war Datum einen Tag vor dem angegebenen Datum                                           |kombination von setDate() und toISOString         | TaskForm.jsx / dueDate im Frontend als String gespeichert                             |
 | 4   | Beim abhacken einer Task, ist er erst beim Neuladen der Seite abgehackt.                                           |Tasklist wurde nicht aktualisiert          | App.jsx / loadTask bei HandleToggle eingefügt.                             |
 | 5   |                                            |         |                              |
-| 6   | Beim ändern eines Tasks über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           |fehlende überprüfung ob dueDate verändert werden soll         |                              |taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.
+| 6   | Beim ändern eines Tasks über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           | fehlende überprüfung ob dueDate verändert werden soll         |  taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.                             | 
 | …   | _(alles, was du sonst noch gefunden hast)_ |         |                              |
 
 ## Feature: Filtern und Sortieren
 
 _Wie hast du es umgesetzt? Welche Entscheidungen hast du getroffen, und warum?_
+
+Zuerst habe ich im Backend das sort und order eingefügt. Danach in App.jsx die Dropdowns hinzugeügt und in api.js sort und order als request query erstellt. Am Ende gab sortierte die Liste nicht und ich musste die KI fragen was nicht stimmt, im route/tasks fiehl noch die req.query.
 
 ## Tests
 
@@ -31,6 +33,8 @@ _Welche Tests hast du geschrieben, und was decken sie ab?_
 Beim Erklären einiger Zeilen im Code.
 
 Beim Suchen und erklären des 3. Bugs.
+
+Für das .include für den HttpError von sort und order.
 - **Wo die KI falsch lag oder nicht geholfen hat, und wie ich es gemerkt habe:**
 
 ## Zeitaufwand
