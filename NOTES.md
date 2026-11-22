@@ -32,6 +32,12 @@ Im Frontend erstellte ich zwei neue UseStates für minPriority und status. Am Sc
 
 _Welche Tests hast du geschrieben, und was decken sie ab?_
 
+Den fünften Bug. Er testet ob die Request die 400 Http request ist.
+
+Den ersten Bug. Er erstellt eine Task und überprüft ob der Task erstellt wurde und in den tasks aufgelistet ist.
+
+Den dritten Bug. Es erstellt eine neue Task mit einen vorgegebenen Datum und überprüft den body.dueDate, ob er noch dashelbe datum hat.
+
 ## KI-Nutzung
 
 - **Verwendete Tools:** Claude und ChatGPT
