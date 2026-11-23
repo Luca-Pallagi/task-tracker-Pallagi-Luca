@@ -13,8 +13,7 @@
 | 3   | Beim erstellen eines Tasks wurde der Tag war Datum einen Tag vor dem angegebenen Datum                                           |kombination von setDate() und toISOString         | TaskForm.jsx / dueDate im Frontend als String gespeichert                             |
 | 4   | Beim abhacken einer Task, ist er erst beim Neuladen der Seite abgehackt.                                           |Tasklist wurde nicht aktualisiert          | App.jsx / loadTask bei HandleToggle eingefügt.                             |
 | 5   | Beim Aufruf von `GET /api/tasks/123` wird der HTTP-500 Fehler angezeigt anstatt den 400 Fehler                                           | Die Id ist keine Mongoose Id        |                              | taskService / ein if eingefügt das überprüft ob es eine mongoose Id ist.
-| 6   | Beim ändern eines Tasks über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           | fehlende überprüfung ob dueDate verändert werden soll         |  taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.                             | 
-| …   | _(alles, was du sonst noch gefunden hast)_ |         |                              |
+| 6   | Beim ändern eines Tasks über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           | fehlende überprüfung ob dueDate verändert werden soll         |  taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.                             |                            |
 
 ## Feature: Filtern und Sortieren
 
@@ -32,11 +31,11 @@ Im Frontend erstellte ich zwei neue UseStates für minPriority und status. Am Sc
 
 _Welche Tests hast du geschrieben, und was decken sie ab?_
 
-Den fünften Bug. Er testet ob die Request die 400 Http request ist.
+Den fünften Bug. Er testet ob die Request die 400 Http request ist, falls die Id keine Mongoose Id ist.
 
 Den ersten Bug. Er erstellt eine Task und überprüft ob der Task erstellt wurde und in den tasks aufgelistet ist.
 
-Den dritten Bug. Es erstellt eine neue Task mit einen vorgegebenen Datum und überprüft den body.dueDate, ob er noch dashelbe datum hat.
+Den dritten Bug. Es erstellt eine neue Task mit einen vorgegebenen Datum und überprüft den body.dueDate, ob er noch dashelbe datum hat wie beim erstellen.
 
 ## KI-Nutzung
 
@@ -61,8 +60,9 @@ Bei Task.find(filter).sort ...  hat es mir gezeigt wie es mit filter einfach fun
 | Setup     | 15min|
 | Bugs      | 3h   |
 | Feature   | 2h   |
-| Tests     |      |
-| NOTES.md  |      |
-| **Total** |      |
+| Tests     | 1h   |
+| NOTES.md  | 20min|
+| **Total** | 6h 35min|
 
 ## Offene Punkte / was ich mit mehr Zeit machen würde
+- Frontend verbessern: Die Dropdowns für filter und sort schöner einbauen.
