@@ -3,6 +3,8 @@ const { HttpError } = require('../errors');
 
 const STATUSES = ['open', 'done'];
 
+const mongoose = require('mongoose');
+
 // ---------- mapping ----------
 
 function toDto(doc) {
@@ -52,11 +54,13 @@ function validateTaskInput(body, { partial }) {
   }
 
   // dueDate is optional - normalise "no due date" to null
-  const dueDate = body.dueDate ? new Date(body.dueDate) : null;
-  if (dueDate && Number.isNaN(dueDate.getTime())) {
-    throw new HttpError(400, 'dueDate is not a valid date');
+  if(body.dueDate !== undefined){
+    const dueDate = body.dueDate ? new Date(body.dueDate) : null;
+    if (dueDate && Number.isNaN(dueDate.getTime())) {
+      throw new HttpError(400, 'dueDate is not a valid date');
+    }
+    data.dueDate = dueDate;
   }
-  data.dueDate = dueDate;
 
   if (body.status !== undefined) {
     if (!STATUSES.includes(body.status)) {
@@ -70,13 +74,44 @@ function validateTaskInput(body, { partial }) {
 
 // ---------- service functions ----------
 
-async function listTasks() {
+async function listTasks({sort = "priority", order = "desc", status, minPriority } = {}) {
+
+  if (status !== undefined && !["open", "done"].includes(status)) {
+    throw new HttpError(400, "Invalid status");
+  }
+
+  if (minPriority !== undefined) {
+    if (Number(minPriority) < 1 || Number(minPriority) > 10) {
+     throw new HttpError(400, "minPriority must be an integer between 1 and 10");
+    }
+  }
+
+  const filter = {};
+
+  if (status !== undefined) {
+    filter.status = status;
+  }
+
+   if (minPriority !== undefined) {
+    filter.priority = { $gte: Number(minPriority) };
+  }
+
+  if(!["priority", "dueDate", "createdAt"].includes(sort)){
+    throw new HttpError(400, "sort muss priority, dueDate oder createdAt sein");
+  }
+  if(!["asc", "desc"].includes(order)){
+    throw new HttpError(400, "order muss entweder asc oder desc sein");
+  }
   // most important tasks first
-  const docs = await Task.find().sort({ priority: -1, _id: -1 }).lean();
+  const direction = order === "asc" ? 1 : -1
+   const docs = await Task.find(filter).sort({ [sort]: direction, _id: direction }).lean();
   return docs.map(toDto);
 }
 
 async function getTask(id) {
+  if (!mongoose.isValidObjectId(id)) {
+    throw new HttpError(400, 'Invalid task ID');
+  }
   const doc = await Task.findById(id).lean();
   if (!doc) throw new HttpError(404, 'Task not found');
   return toDto(doc);

@@ -4,7 +4,7 @@ const taskSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true, maxlength: 200 },
     description: { type: String, default: '', maxlength: 2000 },
-    priority: { type: String, default: '5' },
+    priority: { type: Number, default: 5 },
     dueDate: { type: Date, default: null },
     status: { type: String, enum: ['open', 'done'], default: 'open' },
   },
