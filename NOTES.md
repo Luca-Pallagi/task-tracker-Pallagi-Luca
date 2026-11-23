@@ -1,8 +1,6 @@
 # Notizen
 
-> Fülle diese Datei während der Arbeit aus. Kurz und ehrlich ist besser als lang und poliert.
-
-**Gewähltes Backend:** Node.js / Python _(eines löschen)_
+**Gewähltes Backend:** Node.js
 
 ## Bugs
 
@@ -13,15 +11,15 @@
 | 3   | Beim erstellen eines Tasks wurde der Tag des Datums, einen Tag vor dem angegebenen Datum angezeigt                                          |kombination von setDate() und toISOString         | TaskForm.jsx / dueDate im Frontend als String gespeichert                             |
 | 4   | Beim abhacken einer Task, ist er erst beim Neuladen der Seite abgehackt.                                           |Tasklist wurde nicht aktualisiert          | App.jsx / loadTask bei HandleToggle eingefügt.                             |
 | 5   | Beim Aufruf von `GET /api/tasks/123` wird der HTTP-500 Fehler angezeigt anstatt den 400 Fehler                                           | Die Id ist keine Mongoose Id        |  taskService / ein if eingefügt das überprüft ob es eine mongoose Id ist.                            | 
-| 6   | Beim ändern eines Tasks über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           | fehlende überprüfung ob dueDate verändert werden soll         |  taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.                             |                            |
+| 6   | Beim ändern einer Task über das Partnersystem, ist das Fälligkeitsdatum verschwunden.                                           | fehlende überprüfung ob dueDate verändert werden soll         |  taskService.js / if statement hinzugefügt, um zu überprüfen ob dueDate geändert werden soll.                             |                            |
 
 ## Feature: Filtern und Sortieren
 
 _Wie hast du es umgesetzt? Welche Entscheidungen hast du getroffen, und warum?_
 
-Zuerst habe ich im Backend das sort und order eingefügt. Danach in App.jsx die Dropdowns hinzugeügt, damit keine falsche Werte eingegeben werden können, und in api.js sort und order als request query erstellt. Am Ende sortierte die Liste nicht und ich fragte die KI, weil ich der Fehler lange nicht fand, was nicht stimmt, im route/tasks fiehl noch die req.query.
+Zuerst habe ich im Backend sort und order eingefügt. Danach in App.jsx die Dropdowns hinzugeügt, damit keine falsche Werte eingegeben werden können, und in api.js sort und order als request query erstellt. Am Ende sortierte die Liste nicht und ich fragte die KI, weil ich den Fehler lange nicht fand, was nicht stimmte war, dass im route/tasks noch die req.query fiehlen.
 
-Für den Status und die minPriority habe ich zuerst, im taskService zwei If Statements erstellt die Testen, ob Status ud minPriority die korrekten Werte haben. Anbei habe ich im taskService zuerst einen leeren filtern erstellt, der den Status und die Priorität speichert. Somit musste ich am schluss nur noch die Task.find()  zu Task.find(filter) abändern.
+Für den Status und die minPriority habe ich zuerst, im taskService zwei If Statements erstellt die testen, ob Status ud minPriority die korrekten Werte haben. Anbei habe ich im taskService zuerst einen leeren filtern erstellt, der den Status und die Priorität speichert. Somit musste ich am schluss nur noch die Task.find()  zu Task.find(filter) abändern.
 
 In der api.js erstellte ich eine Variabel für die url. Damit ich, falls es status oder minPriority hat, diese einfach zur URL hinzufügen kann.
 
