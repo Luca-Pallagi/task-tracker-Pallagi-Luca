@@ -14,7 +14,8 @@
   "dependencies": {
     "express": "^4.21.2",
     "mongodb-memory-server": "^10.1.4",
-    "mongoose": "^8.9.5"
+    "mongoose": "^8.9.5",
+    "task-tracker": "file:.."
   },
   "devDependencies": {
     "jest": "^29.7.0",
